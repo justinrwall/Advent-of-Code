@@ -37,7 +37,7 @@ pagesets = second_section.strip().split('\n')
 # create dictionary where k=page and v=list of pages that come after k
 rule_dict = {}
 for rule in rules:
-  k, v = rule.split('|')
+  k, v = list(map(int, rule.split('|')))
   if k not in rule_dict.keys():
     rule_dict[k] = [v]
   else:
@@ -47,9 +47,9 @@ for rule in rules:
 
 total = 0
 for pageset in pagesets:
-  pageset = pageset.split(',')
+  pageset = list(map(int, pageset.split(',')))
   if not check_order(pageset[:], rule_dict):            # if order is incorrect
     pageset = correct_order(pageset[:], rule_dict, [])  # correct the order
-    total += int(pageset[len(pageset) // 2])            # add middle page
+    total += pageset[len(pageset) // 2]                 # add middle page
 
 print(total)
