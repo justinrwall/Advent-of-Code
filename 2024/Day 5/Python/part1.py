@@ -9,24 +9,15 @@ def check_order(a, ref):
   return True
 
 # read input_data from file
-rules = []
-pagesets = []
-switch = False
 with open("../input.txt", "r") as file:
-  for line in file.readlines():
-    line = line.strip()
-    if line == "":
-      switch = True                     # line break in file
-      continue
-    if not switch:
-      rules.append(line.split('|'))     # first section
-    else:
-      pagesets.append(line.split(','))  # second section
+  first_section, second_section = file.read().split('\n\n')
+rules = first_section.strip().split('\n')
+pagesets = second_section.strip().split('\n')
 
 # create dictionary where k=page and v=list of pages that come after k
 rule_tree = {}
 for rule in rules:
-  k, v = rule
+  k, v = rule.split('|')
   if k not in rule_tree.keys():
     rule_tree[k] = [v]
   else:
@@ -36,6 +27,7 @@ for rule in rules:
 
 total = 0
 for pageset in pagesets:
+  pageset = pageset.split(',')
   if check_order(pageset[:], rule_tree):      # if order is correct
     total += int(pageset[len(pageset) // 2])  # add middle page
 
