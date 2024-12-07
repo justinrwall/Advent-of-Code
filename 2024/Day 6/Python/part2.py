@@ -58,7 +58,7 @@ def check_loop(pos):
   return False
 
 # read input_data from file
-with open("../example.txt", "r") as file:
+with open("../input.txt", "r") as file:
   input_data = [list(line.strip()) for line in file.readlines()]
 
 facility_map = input_data
