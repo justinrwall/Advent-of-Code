@@ -34,7 +34,7 @@ while in_bounds(currentX, currentY, input_data):
   nextY = currentY + directions[turn % 4][0]
 
   if in_bounds(nextX, nextY, input_data):
-    if input_data[nextY][nextX] == "#":
+    if [nextY, nextX] in obstacles:
       turn = turn + 1  # turn right
     else:
       currentX = nextX  # move to next
