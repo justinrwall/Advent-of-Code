@@ -1,11 +1,10 @@
 # build list of all possible results
-def calculate(nums, results):
+def calculate(nums):
   if len(nums) == 1:
-    results.append(nums[0])
-    return
+    return nums
 
-  calculate([nums[0] + nums[1]] + nums[2:], results)  # add
-  calculate([nums[0] * nums[1]] + nums[2:], results)  # multiply
+  return (calculate([nums[0] + nums[1]] + nums[2:]) +  # add
+          calculate([nums[0] * nums[1]] + nums[2:]))   # multiply
 
 # read input_data from file
 with open("../input.txt", "r") as file:
@@ -18,8 +17,7 @@ for line in input_data:
   operands = list(map(int, right.split()))
 
   # get results of all possible operand/operator combinations
-  results = []
-  calculate(operands, results)
+  results = calculate(operands)
 
   # if one of the possible results is correct
   if result in results:
