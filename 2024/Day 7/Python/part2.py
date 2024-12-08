@@ -8,8 +8,9 @@ def calculate(nums, results):
     results.append(nums[0])
     return
 
-  calculate([nums[0] + nums[1]] + nums[2:], results)  # add
-  calculate([nums[0] * nums[1]] + nums[2:], results)  # multiply
+  calculate([nums[0] + nums[1]] + nums[2:], results)                 # add
+  calculate([nums[0] * nums[1]] + nums[2:], results)                 # multiply
+  calculate([int(str(nums[0]) + str(nums[1]))] + nums[2:], results)  # concatenate
 
 total = 0
 for line in input_data:
