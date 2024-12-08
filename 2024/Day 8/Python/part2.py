@@ -39,26 +39,18 @@ for frequency in antennas.keys():
     antinodes = [a, b]  # a and b are both antinodes of each other
 
     # get antinodes moving away from a
-    i = 1
-    while True:
+    for i in itertools.count(start=1):
       antinode = [a[0] - i * slope[0], a[1] - i * slope[1]]
-      if in_bounds(antinode, width, height):
-        if antinode not in antinodes:
-          antinodes.append(antinode)
-        i += 1
-      else:
+      if not in_bounds(antinode, width, height):
         break
+      antinodes.append(antinode)
 
     # get antinodes moving away from b
-    i = 1
-    while True:
+    for i in itertools.count(start=1):
       antinode = [b[0] + i * slope[0], b[1] + i * slope[1]]
-      if in_bounds(antinode, width, height):
-        if antinode not in antinodes:
-          antinodes.append(antinode)
-        i += 1
-      else:
+      if not in_bounds(antinode, width, height):
         break
+      antinodes.append(antinode)
 
     for antinode in antinodes:
       if antinode not in unique_antinodes:
