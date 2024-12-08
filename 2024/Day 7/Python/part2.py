@@ -1,7 +1,3 @@
-# read input_data from file
-with open("../input.txt", "r") as file:
-  input_data = file.readlines()
-
 # build list of all possible results
 def calculate(nums, results):
   if len(nums) == 1:
@@ -11,6 +7,10 @@ def calculate(nums, results):
   calculate([nums[0] + nums[1]] + nums[2:], results)                 # add
   calculate([nums[0] * nums[1]] + nums[2:], results)                 # multiply
   calculate([int(str(nums[0]) + str(nums[1]))] + nums[2:], results)  # concatenate
+
+# read input_data from file
+with open("../input.txt", "r") as file:
+  input_data = file.readlines()
 
 total = 0
 for line in input_data:
