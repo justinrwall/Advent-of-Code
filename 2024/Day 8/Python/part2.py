@@ -36,10 +36,32 @@ for frequency in antennas.keys():
     b = pair[1]
     slope = [b[0] - a[0], b[1] - a[1]]  # slope from a to b
 
-    # one antinode is a minus the slope, other is b plus the slope
-    antinodes = [[a[0] - slope[0], a[1] - slope[1]], [b[0] + slope[0], b[1] + slope[1]]]
+    antinodes = [a, b]  # a and b are both antinodes of each other
+
+    # get antinodes moving away from a
+    i = 1
+    while True:
+      antinode = [a[0] - i * slope[0], a[1] - i * slope[1]]
+      if in_bounds(antinode, width, height):
+        if antinode not in antinodes:
+          antinodes.append(antinode)
+        i += 1
+      else:
+        break
+
+    # get antinodes moving away from b
+    i = 1
+    while True:
+      antinode = [b[0] + i * slope[0], b[1] + i * slope[1]]
+      if in_bounds(antinode, width, height):
+        if antinode not in antinodes:
+          antinodes.append(antinode)
+        i += 1
+      else:
+        break
+
     for antinode in antinodes:
-      if antinode not in unique_antinodes and in_bounds(antinode, width, height):
+      if antinode not in unique_antinodes:
         unique_antinodes.append(antinode)
 
 print(len(unique_antinodes))
