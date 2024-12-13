@@ -11,6 +11,9 @@ total = 0
 for case in input_data:
   ax, ay, bx, by, px, py = map(int, findall(r"\d+", case))
 
+  px += 1e13
+  py += 1e13
+
   # solve for a (nearest integer)
   a = round((py / by - px / bx) /
             (ay / by - ax / bx))
