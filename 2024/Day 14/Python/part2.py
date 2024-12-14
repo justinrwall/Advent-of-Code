@@ -2,13 +2,11 @@ from re import findall
 from PIL import Image
 
 # convert map to image
-def print_map(m):
-  width = len(m[0])
-  height = len(m)
-  image = Image.new("1", (width, height))
+def print_map(m, w, h):
+  image = Image.new("1", (w, h))
 
-  for x in range(width):
-    for y in range(height):
+  for x in range(w):
+    for y in range(h):
       if m[y][x] == 0:
         image.putpixel((x, y), 0)
       else:
@@ -57,5 +55,5 @@ while True:
   i += 1
 
 # create tree image file
-print_map(facility)
+print_map(facility, width, height)
 print(i)  # print iteration count until tree
