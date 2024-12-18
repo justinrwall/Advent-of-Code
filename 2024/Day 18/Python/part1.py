@@ -22,14 +22,14 @@ def shortest_path(grid, start, end):
 
 # read input_data from file
 with open("../input.txt", "r") as file:
-    input_data = file.readlines()
+    obstacles = [line.strip() for line in file.readlines()]
 
 grid_size = 71
 obstacle_count = 1024
 grid = [[0 for j in range(grid_size)] for i in range(grid_size)]
 for i in range(obstacle_count):
-    r, c = list(map(int, input_data[i].strip().split(',')))
-    grid[r][c] = 1
+    row, col = list(map(int, obstacles[i].split(',')))
+    grid[row][col] = 1
 
 # number of steps is length of shortest path minus the initial node
 path = shortest_path(grid, (0, 0), (grid_size - 1, grid_size - 1))
